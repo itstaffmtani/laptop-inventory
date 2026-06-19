@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventarisasi Laptop — MTani</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #f5f5f4;
+        color: #1c1917;
+        min-height: 100vh;
+        padding: 2rem 1rem;
+      }
+
+      .container {
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .header .logo {
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: #78716c;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      .header h1 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #1c1917;
+      }
+
+      .header p {
+        font-size: 14px;
+        color: #78716c;
+        margin-top: 6px;
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid #e7e5e4;
+        border-radius: 12px;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      .card-title {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #a8a29e;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .field {
+        margin-bottom: 0.875rem;
+      }
+      .field:last-child {
+        margin-bottom: 0;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: #57534e;
+        margin-bottom: 5px;
+      }
+
+      .req {
+        color: #ef4444;
+      }
+
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 9px 12px;
+        border: 1px solid #d6d3d1;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #1c1917;
+        background: #fff;
+        transition: border-color 0.15s;
+        outline: none;
+        font-family: inherit;
+      }
+
+      input[type="text"]:focus,
+      textarea:focus {
+        border-color: #a8a29e;
+        box-shadow: 0 0 0 3px rgba(168, 162, 158, 0.15);
+      }
+
+      input.auto-filled {
+        background: #fafaf9;
+        color: #44403c;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+        line-height: 1.5;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 8px;
+      }
+
+      .radio-opt {
+        flex: 1;
+      }
+      .radio-opt input[type="radio"] {
+        display: none;
+      }
+      .radio-opt label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 9px 12px;
+        border: 1px solid #d6d3d1;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 400;
+        color: #57534e;
+        transition: all 0.15s;
+        margin: 0;
+      }
+
+      .radio-opt input:checked + label {
+        border: 2px solid #0ea5e9;
+        background: #f0f9ff;
+        color: #0369a1;
+        font-weight: 500;
+      }
+
+      .spec-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        color: #15803d;
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        margin-bottom: 12px;
+      }
+
+      .spec-badge.warn {
+        background: #fffbeb;
+        border-color: #fde68a;
+        color: #b45309;
+      }
+
+      .divider {
+        border: none;
+        border-top: 1px solid #f5f5f4;
+        margin: 1rem 0;
+      }
+
+      .note {
+        font-size: 12px;
+        color: #a8a29e;
+        margin-top: 5px;
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: 12px;
+        background: #1c1917;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        font-family: inherit;
+        transition: opacity 0.15s;
+        margin-top: 0.25rem;
+      }
+
+      .btn-submit:hover {
+        opacity: 0.85;
+      }
+      .btn-submit:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      .alert {
+        padding: 12px 16px;
+        border-radius: 10px;
+        font-size: 14px;
+        margin-bottom: 1rem;
+        display: none;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .alert-success {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        color: #15803d;
+      }
+      .alert-error {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #dc2626;
+      }
+
+      .success-screen {
+        display: none;
+        text-align: center;
+        padding: 3rem 1rem;
+      }
+
+      .success-screen .icon {
+        font-size: 48px;
+        margin-bottom: 1rem;
+      }
+
+      .success-screen h2 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .success-screen p {
+        font-size: 14px;
+        color: #78716c;
+      }
+
+      .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #a8a29e;
+        margin-top: 1.5rem;
+      }
+
+      @media (max-width: 400px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">MTani · PT Semangat Bersama</div>
+        <h1>Inventarisasi Laptop</h1>
+        <p>
+          Spesifikasi sudah terisi otomatis. Lengkapi data diri dan klik Kirim.
+        </p>
+      </div>
+
+      <div id="alert-success" class="alert alert-success">
+        ✓ Data berhasil dikirim! Terima kasih.
+      </div>
+      <div id="alert-error" class="alert alert-error">
+        ✗ <span id="error-msg">Terjadi kesalahan. Coba lagi.</span>
+      </div>
+
+      <div id="form-area">
+        <!-- Data diri -->
+        <div class="card">
+          <div class="card-title">👤 Data diri</div>
+
+          <div class="field">
+            <label for="nama">Nama lengkap <span class="req">*</span></label>
+            <input
+              type="text"
+              id="nama"
+              placeholder="Nama sesuai kartu karyawan"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="field">
+            <label>Status laptop <span class="req">*</span></label>
+            <div class="radio-group">
+              <div class="radio-opt">
+                <input
+                  type="radio"
+                  name="status"
+                  id="s-kantor"
+                  value="Kantor"
+                />
+                <label for="s-kantor">🏢 Inventaris kantor</label>
+              </div>
+              <div class="radio-opt">
+                <input
+                  type="radio"
+                  name="status"
+                  id="s-pribadi"
+                  value="Pribadi"
+                />
+                <label for="s-pribadi">🏠 Milik pribadi</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spesifikasi -->
+        <div class="card">
+          <div class="card-title">💻 Spesifikasi laptop</div>
+
+          <div id="auto-badge" class="spec-badge" style="display: none">
+            ✓ Terdeteksi otomatis dari perangkat ini
+          </div>
+          <div id="manual-badge" class="spec-badge warn" style="display: none">
+            ⚠ Spesifikasi tidak terdeteksi — isi secara manual
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="merk">Merk <span class="req">*</span></label>
+              <input
+                type="text"
+                id="merk"
+                placeholder="Lenovo, HP, ASUS, Apple..."
+              />
+            </div>
+            <div class="field">
+              <label for="model">Model</label>
+              <input type="text" id="model" placeholder="e.g. ThinkPad E14" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="cpu">Processor (CPU)</label>
+            <input
+              type="text"
+              id="cpu"
+              placeholder="e.g. Intel Core i5-1135G7"
+            />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="ram">RAM</label>
+              <input type="text" id="ram" placeholder="e.g. 8 GB" />
+            </div>
+            <div class="field">
+              <label for="storage">Storage</label>
+              <input type="text" id="storage" placeholder="e.g. 256 GB SSD" />
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="field">
+            <label for="kerusakan">Kerusakan / keluhan</label>
+            <textarea
+              id="kerusakan"
+              placeholder="Kosongkan jika laptop normal. Contoh: baterai bocor, layar retak, keyboard macet..."
+            ></textarea>
+            <p class="note">Tulis "Tidak ada" jika kondisi baik.</p>
+          </div>
+        </div>
+
+        <button class="btn-submit" id="btn-submit" onclick="submitForm()">
+          Kirim data →
+        </button>
+
+        <div class="footer">
+          Data dikirim ke tim IT · Hanya untuk keperluan inventarisasi internal
+        </div>
+      </div>
+
+      <!-- Success screen -->
+      <div class="success-screen" id="success-screen">
+        <div class="icon">✅</div>
+        <h2>Data berhasil dikirim!</h2>
+        <p>
+          Terima kasih, <strong id="nama-confirm"></strong>.<br />Jendela ini
+          sudah bisa ditutup.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // ── Baca query params dari PowerShell ──────────────────────
+      const params = new URLSearchParams(window.location.search);
+
+      function fillField(id, key, fallback) {
+        const val = params.get(key);
+        const el = document.getElementById(id);
+        if (
+          val &&
+          val.trim() &&
+          !val.toLowerCase().includes("tidak diketahui")
+        ) {
+          el.value = val.trim();
+          el.classList.add("auto-filled");
+          return true;
+        } else if (fallback) {
+          el.placeholder = fallback;
+        }
+        return false;
+      }
+
+      const filled = [
+        fillField("merk", "merk", "Isi manual"),
+        fillField("model", "model", "Isi manual"),
+        fillField("cpu", "cpu", "e.g. Intel Core i5"),
+        fillField("ram", "ram", "e.g. 8 GB"),
+        fillField("storage", "storage", "e.g. 256 GB SSD"),
+      ];
+
+      const anyFilled = filled.some(Boolean);
+      document.getElementById("auto-badge").style.display = anyFilled
+        ? "inline-flex"
+        : "none";
+      document.getElementById("manual-badge").style.display = anyFilled
+        ? "none"
+        : "inline-flex";
+
+      // ── Submit ke Google Sheets ─────────────────────────────────
+      const APPS_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbz52DDxaEfACkugm01-lzVI8UpAy0R1cijLjRGwftAbM2j8I2uZTokkYFF6IqAJtbAz/exec";
+
+      async function submitForm() {
+        const nama = document.getElementById("nama").value.trim();
+        const status = document.querySelector("input[name=status]:checked");
+        const merk = document.getElementById("merk").value.trim();
+
+        if (!nama) {
+          showError("Nama lengkap wajib diisi.");
+          document.getElementById("nama").focus();
+          return;
+        }
+        if (!status) {
+          showError("Pilih status laptop (kantor atau pribadi).");
+          return;
+        }
+        if (!merk) {
+          showError("Merk laptop wajib diisi.");
+          document.getElementById("merk").focus();
+          return;
+        }
+
+        const btn = document.getElementById("btn-submit");
+        btn.disabled = true;
+        btn.textContent = "Mengirim...";
+
+        const payload = {
+          timestamp: new Date().toLocaleString("id-ID", {
+            timeZone: "Asia/Jakarta",
+          }),
+          nama,
+          status: status.value,
+          merk,
+          model: document.getElementById("model").value.trim() || "-",
+          cpu: document.getElementById("cpu").value.trim() || "-",
+          ram: document.getElementById("ram").value.trim() || "-",
+          storage: document.getElementById("storage").value.trim() || "-",
+          kerusakan: document.getElementById("kerusakan").value.trim() || "-",
+          os: params.get("os") || "-",
+          serial: params.get("serial") || "-",
+        };
+
+        try {
+          await fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          // Tampilkan success screen
+          document.getElementById("form-area").style.display = "none";
+          const sc = document.getElementById("success-screen");
+          sc.style.display = "block";
+          document.getElementById("nama-confirm").textContent = nama;
+        } catch (err) {
+          showError(
+            "Gagal mengirim. Pastikan internet terhubung, lalu coba lagi.",
+          );
+          btn.disabled = false;
+          btn.textContent = "Kirim data →";
+        }
+      }
+
+      function showError(msg) {
+        const el = document.getElementById("alert-error");
+        document.getElementById("error-msg").textContent = msg;
+        el.style.display = "flex";
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(() => (el.style.display = "none"), 5000);
+      }
+    </script>
+  </body>
+</html>
