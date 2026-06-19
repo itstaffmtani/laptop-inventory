@@ -1,7 +1,7 @@
 @echo off
 :: MTani — Laptop Inventory · Self-contained (no external .ps1 needed)
 set "BAT_PATH=%~f0"
-powershell -NoProfile -ExecutionPolicy Bypass -Command "& { $f = (Get-Content $env:BAT_PATH -Raw); Invoke-Expression ($f -split '#PS1#\r?\n',2)[1] }"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "& { $f = (Get-Content $env:BAT_PATH -Raw -Encoding UTF8); $ps1 = ($f -split '#PS1#\r?\n',2)[1]; $tmp = [IO.Path]::GetTempFileName() + '.ps1'; [IO.File]::WriteAllText($tmp, $ps1, [Text.Encoding]::UTF8); try { & $tmp } finally { Remove-Item $tmp -Force -EA 0 } }"
 exit /b
 #PS1#
 Add-Type -AssemblyName System.Web
