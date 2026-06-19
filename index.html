@@ -80,7 +80,7 @@
               <input
                 type="text"
                 id="jabatan"
-                placeholder="Staff IT, Finance Officer, dll."
+                placeholder="Staff IT, SPV Lapangan, dll."
                 class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
               />
             </div>
@@ -921,9 +921,11 @@
       function toggleTidakAda() {
         const tidakAda = document.getElementById("k-tidakada").checked;
         if (tidakAda) {
-          ["k-charger", "k-tas", "k-mouse", "k-docking", "k-keyboard"].forEach((id) => {
-            document.getElementById(id).checked = false;
-          });
+          ["k-charger", "k-tas", "k-mouse", "k-docking", "k-keyboard"].forEach(
+            (id) => {
+              document.getElementById(id).checked = false;
+            },
+          );
           document.getElementById("charger-type-group").classList.add("hidden");
           document
             .querySelectorAll("input[name=charger_type]")
@@ -1028,17 +1030,22 @@
           ram_gb: document.getElementById("ram_gb").value.trim() || "-",
           ram_type: document.getElementById("ram_type").value.trim() || "-",
           ram_speed: document.getElementById("ram_speed").value.trim() || "-",
-          ram_usage_pct: document.getElementById("ram_usage_pct").value.trim() || "-",
-          ram_usage_gb: document.getElementById("ram_usage_gb").value.trim() || "-",
+          ram_usage_pct:
+            document.getElementById("ram_usage_pct").value.trim() || "-",
+          ram_usage_gb:
+            document.getElementById("ram_usage_gb").value.trim() || "-",
           ssd_gb: document.getElementById("ssd_gb").value.trim() || "-",
           ssd_tipe: document.getElementById("ssd_tipe").value.trim() || "-",
           hdd_gb: document.getElementById("hdd_gb").value.trim() || "-",
-          battery_pct: document.getElementById("battery_pct").value.trim() || "-",
+          battery_pct:
+            document.getElementById("battery_pct").value.trim() || "-",
           battery_wh: document.getElementById("battery_wh").value.trim() || "-",
-          battery_wh_design: document.getElementById("battery_wh_design").value.trim() || "-",
+          battery_wh_design:
+            document.getElementById("battery_wh_design").value.trim() || "-",
           os: document.getElementById("os").value.trim() || "-",
           os_free_gb: document.getElementById("os_free_gb").value.trim() || "-",
-          os_total_gb: document.getElementById("os_total_gb").value.trim() || "-",
+          os_total_gb:
+            document.getElementById("os_total_gb").value.trim() || "-",
           kondisi_fisik: kondisi.value,
           kelengkapan,
           tahun_beli: document.getElementById("tahun_beli").value.trim() || "-",
