@@ -365,13 +365,13 @@
               <div>
                 <label
                   class="block text-[13px] font-medium text-stone-600 mb-1"
-                  for="ram_size"
-                  >RAM</label
+                  for="ram_gb"
+                  >RAM (GB)</label
                 >
                 <input
                   type="text"
-                  id="ram_size"
-                  placeholder="16 GB"
+                  id="ram_gb"
+                  placeholder="16"
                   class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
                 />
               </div>
@@ -392,58 +392,80 @@
                 <label
                   class="block text-[13px] font-medium text-stone-600 mb-1"
                   for="ram_speed"
-                  >Speed</label
+                  >Speed (MHz)</label
                 >
                 <input
                   type="text"
                   id="ram_speed"
-                  placeholder="3200 MHz"
+                  placeholder="3200"
                   class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
                 />
               </div>
             </div>
 
             <div>
-              <label
-                class="block text-[13px] font-medium text-stone-600 mb-1"
-                for="ram_usage"
-                >Penggunaan RAM Saat Ini</label
-              >
-              <input
-                type="text"
-                id="ram_usage"
-                placeholder="45% (7.2 GB digunakan)"
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
-              />
-              <p class="text-xs text-stone-400 mt-1">
-                Snapshot saat script dijalankan.
-              </p>
+              <label class="block text-[13px] font-medium text-stone-600 mb-1">
+                Penggunaan RAM Saat Ini
+              </label>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <input
+                    type="text"
+                    id="ram_usage_pct"
+                    placeholder="45"
+                    class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                  />
+                  <p class="text-xs text-stone-400 mt-1">% terpakai</p>
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    id="ram_usage_gb"
+                    placeholder="7.2"
+                    class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                  />
+                  <p class="text-xs text-stone-400 mt-1">GB digunakan</p>
+                </div>
+              </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-2.5">
+            <div class="grid grid-cols-3 gap-2">
               <div>
                 <label
                   class="block text-[13px] font-medium text-stone-600 mb-1"
-                  for="ssd"
-                  >SSD</label
+                  for="ssd_gb"
+                  >SSD (GB)</label
                 >
                 <input
                   type="text"
-                  id="ssd"
-                  placeholder="512 GB NVMe"
+                  id="ssd_gb"
+                  placeholder="512"
                   class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
                 />
               </div>
               <div>
                 <label
                   class="block text-[13px] font-medium text-stone-600 mb-1"
-                  for="hdd"
-                  >HDD</label
+                  for="ssd_tipe"
+                  >Tipe SSD</label
                 >
                 <input
                   type="text"
-                  id="hdd"
-                  placeholder="1 TB (kosong jika tidak ada)"
+                  id="ssd_tipe"
+                  placeholder="NVMe"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="hdd_gb"
+                  >HDD (GB)</label
+                >
+                <input
+                  type="text"
+                  id="hdd_gb"
+                  placeholder="1000"
                   class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
                 />
               </div>
@@ -451,47 +473,85 @@
 
             <hr class="border-stone-100" />
 
-            <div class="grid grid-cols-2 gap-2.5">
+            <div class="grid grid-cols-3 gap-2">
               <div>
                 <label
                   class="block text-[13px] font-medium text-stone-600 mb-1"
-                  for="battery"
-                  >Battery Health</label
+                  for="battery_pct"
+                  >Battery (%)</label
                 >
                 <input
                   type="text"
-                  id="battery"
-                  placeholder="78% (44 Wh / 57 Wh)"
+                  id="battery_pct"
+                  placeholder="78"
                   class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
                 />
               </div>
               <div>
                 <label
                   class="block text-[13px] font-medium text-stone-600 mb-1"
-                  for="os"
-                  >Sistem Operasi</label
+                  for="battery_wh"
+                  >Wh</label
                 >
                 <input
                   type="text"
-                  id="os"
-                  placeholder="Windows 11 Pro 64-bit"
+                  id="battery_wh"
+                  placeholder="44"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="battery_wh_design"
+                  >Wh Design</label
+                >
+                <input
+                  type="text"
+                  id="battery_wh_design"
+                  placeholder="57"
                   class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
                 />
               </div>
             </div>
-
             <div>
               <label
                 class="block text-[13px] font-medium text-stone-600 mb-1"
-                for="os_free"
-                >Ruang Bebas Partisi OS</label
+                for="os"
+                >Sistem Operasi</label
               >
               <input
                 type="text"
-                id="os_free"
-                placeholder="C: 120 GB free / 256 GB"
+                id="os"
+                placeholder="Windows 11 Pro 64-bit"
                 class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
               />
+            </div>
+
+            <div>
+              <label class="block text-[13px] font-medium text-stone-600 mb-1">
+                Ruang Partisi OS
+              </label>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <input
+                    type="text"
+                    id="os_free_gb"
+                    placeholder="120"
+                    class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                  />
+                  <p class="text-xs text-stone-400 mt-1">Free (GB)</p>
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    id="os_total_gb"
+                    placeholder="256"
+                    class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                  />
+                  <p class="text-xs text-stone-400 mt-1">Total (GB)</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -823,15 +883,20 @@
         fillField("cpu_threads", "cpu_threads"),
         fillField("cpu_arch", "cpu_arch"),
         fillField("gpu", "gpu"),
-        fillField("ram_size", "ram_size"),
+        fillField("ram_gb", "ram_gb"),
         fillField("ram_type", "ram_type"),
         fillField("ram_speed", "ram_speed"),
-        fillField("ram_usage", "ram_usage"),
-        fillField("ssd", "ssd"),
-        fillField("hdd", "hdd"),
-        fillField("battery", "battery"),
+        fillField("ram_usage_pct", "ram_usage_pct"),
+        fillField("ram_usage_gb", "ram_usage_gb"),
+        fillField("ssd_gb", "ssd_gb"),
+        fillField("ssd_tipe", "ssd_tipe"),
+        fillField("hdd_gb", "hdd_gb"),
+        fillField("battery_pct", "battery_pct"),
+        fillField("battery_wh", "battery_wh"),
+        fillField("battery_wh_design", "battery_wh_design"),
         fillField("os", "os"),
-        fillField("os_free", "os_free"),
+        fillField("os_free_gb", "os_free_gb"),
+        fillField("os_total_gb", "os_total_gb"),
       ];
 
       const anyFilled = autoResults.some(Boolean);
@@ -960,15 +1025,20 @@
             document.getElementById("cpu_threads").value.trim() || "-",
           cpu_arch: document.getElementById("cpu_arch").value.trim() || "-",
           gpu: document.getElementById("gpu").value.trim() || "-",
-          ram_size: document.getElementById("ram_size").value.trim() || "-",
+          ram_gb: document.getElementById("ram_gb").value.trim() || "-",
           ram_type: document.getElementById("ram_type").value.trim() || "-",
           ram_speed: document.getElementById("ram_speed").value.trim() || "-",
-          ram_usage: document.getElementById("ram_usage").value.trim() || "-",
-          ssd: document.getElementById("ssd").value.trim() || "-",
-          hdd: document.getElementById("hdd").value.trim() || "-",
-          battery: document.getElementById("battery").value.trim() || "-",
+          ram_usage_pct: document.getElementById("ram_usage_pct").value.trim() || "-",
+          ram_usage_gb: document.getElementById("ram_usage_gb").value.trim() || "-",
+          ssd_gb: document.getElementById("ssd_gb").value.trim() || "-",
+          ssd_tipe: document.getElementById("ssd_tipe").value.trim() || "-",
+          hdd_gb: document.getElementById("hdd_gb").value.trim() || "-",
+          battery_pct: document.getElementById("battery_pct").value.trim() || "-",
+          battery_wh: document.getElementById("battery_wh").value.trim() || "-",
+          battery_wh_design: document.getElementById("battery_wh_design").value.trim() || "-",
           os: document.getElementById("os").value.trim() || "-",
-          os_free: document.getElementById("os_free").value.trim() || "-",
+          os_free_gb: document.getElementById("os_free_gb").value.trim() || "-",
+          os_total_gb: document.getElementById("os_total_gb").value.trim() || "-",
           kondisi_fisik: kondisi.value,
           kelengkapan,
           tahun_beli: document.getElementById("tahun_beli").value.trim() || "-",

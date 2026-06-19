@@ -48,54 +48,61 @@ $ddr_map      = @{ 20="DDR"; 21="DDR2"; 22="DDR2 FB-DIMM"; 24="DDR3"; 26="DDR4";
 $ddr_type     = $ddr_map[[int]$first_mod.SMBIOSMemoryType]
 if (-not $ddr_type) { $ddr_type = "" }
 $spd          = if ($first_mod.ConfiguredClockSpeed -gt 0) { $first_mod.ConfiguredClockSpeed } else { $first_mod.Speed }
-$ram_size_str  = "${ram_total_gb} GB"
+$ram_gb_str    = [string]$ram_total_gb
 $ram_type_str  = $ddr_type
-$ram_speed_str = if ($spd -gt 0) { "${spd} MHz" } else { "" }
+$ram_speed_str = if ($spd -gt 0) { [string]$spd } else { "" }
 
-$ram_free_bytes = $os_obj.FreePhysicalMemory * 1KB
-$ram_used_pct   = [math]::Round(($cs.TotalPhysicalMemory - $ram_free_bytes) / $cs.TotalPhysicalMemory * 100)
-$ram_used_gb    = [math]::Round(($cs.TotalPhysicalMemory - $ram_free_bytes) / 1GB, 1)
-$ram_usage_str  = "${ram_used_pct}% (${ram_used_gb} GB digunakan)"
+$ram_free_bytes    = $os_obj.FreePhysicalMemory * 1KB
+$ram_used_pct      = [math]::Round(($cs.TotalPhysicalMemory - $ram_free_bytes) / $cs.TotalPhysicalMemory * 100)
+$ram_used_gb       = [math]::Round(($cs.TotalPhysicalMemory - $ram_free_bytes) / 1GB, 1)
+$ram_usage_pct_str = [string]$ram_used_pct
+$ram_usage_gb_str  = [string]$ram_used_gb
 
-$ssd_parts = @()
-$hdd_parts = @()
+$ssd_gb_total = 0
+$ssd_types    = @()
+$hdd_gb_total = 0
 try {
     foreach ($pd in (Get-PhysicalDisk -ErrorAction Stop)) {
         $size_gb = [math]::Round($pd.Size / 1GB)
         $bus     = $pd.BusType
         $media   = $pd.MediaType
         $name_lc = $pd.FriendlyName.ToLower()
-        if     ($media -eq "SSD" -and $bus -eq "NVMe") { $ssd_parts += "${size_gb} GB NVMe" }
-        elseif ($media -eq "SSD")                       { $ssd_parts += "${size_gb} GB SATA" }
-        elseif ($media -eq "HDD")                       { $hdd_parts += "${size_gb} GB" }
-        elseif ($name_lc -match "nvme")                 { $ssd_parts += "${size_gb} GB NVMe" }
-        elseif ($name_lc -match "ssd")                  { $ssd_parts += "${size_gb} GB" }
-        else                                            { $hdd_parts += "${size_gb} GB" }
+        if     ($media -eq "SSD" -and $bus -eq "NVMe") { $ssd_gb_total += $size_gb; $ssd_types += "NVMe" }
+        elseif ($media -eq "SSD")                       { $ssd_gb_total += $size_gb; $ssd_types += "SATA" }
+        elseif ($media -eq "HDD")                       { $hdd_gb_total += $size_gb }
+        elseif ($name_lc -match "nvme")                 { $ssd_gb_total += $size_gb; $ssd_types += "NVMe" }
+        elseif ($name_lc -match "ssd")                  { $ssd_gb_total += $size_gb; $ssd_types += "SATA" }
+        else                                            { $hdd_gb_total += $size_gb }
     }
 } catch {
     foreach ($disk in (Get-WmiObject Win32_DiskDrive)) {
         $size_gb = [math]::Round($disk.Size / 1GB)
         $m       = $disk.Model.ToLower()
-        if     ($m -match "nvme")    { $ssd_parts += "${size_gb} GB NVMe" }
-        elseif ($m -match "ssd")     { $ssd_parts += "${size_gb} GB" }
-        else                         { $hdd_parts += "${size_gb} GB" }
+        if     ($m -match "nvme")    { $ssd_gb_total += $size_gb; $ssd_types += "NVMe" }
+        elseif ($m -match "ssd")     { $ssd_gb_total += $size_gb; $ssd_types += "SATA" }
+        else                         { $hdd_gb_total += $size_gb }
     }
 }
-$ssd_str = if ($ssd_parts.Count -gt 0) { $ssd_parts -join " + " } else { "" }
-$hdd_str = if ($hdd_parts.Count -gt 0) { $hdd_parts -join " + " } else { "" }
+$ssd_gb_str   = if ($ssd_gb_total -gt 0) { [string]$ssd_gb_total } else { "" }
+$ssd_tipe_str = if ($ssd_types.Count -gt 0) { ($ssd_types | Select-Object -Unique) -join "/" } else { "" }
+$hdd_gb_str   = if ($hdd_gb_total -gt 0) { [string]$hdd_gb_total } else { "" }
 
-$os_free_str = ""
+$os_free_gb_str  = ""
+$os_total_gb_str = ""
 try {
     $os_drive = $os_obj.SystemDrive
     $ldd      = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='$os_drive'" -ErrorAction Stop
     if ($ldd) {
-        $total_gb    = [math]::Round($ldd.Size / 1GB)
-        $free_gb     = [math]::Round($ldd.FreeSpace / 1GB)
-        $os_free_str = "${os_drive} ${free_gb} GB free / ${total_gb} GB"
+        $total_gb        = [math]::Round($ldd.Size / 1GB)
+        $free_gb         = [math]::Round($ldd.FreeSpace / 1GB)
+        $os_free_gb_str  = [string]$free_gb
+        $os_total_gb_str = [string]$total_gb
     }
 } catch {}
 
-$battery_str = ""
+$battery_pct_str       = ""
+$battery_wh_str        = ""
+$battery_wh_design_str = ""
 try {
     $static = Get-WmiObject -Namespace root/WMI -Class BatteryStaticData -ErrorAction Stop | Select-Object -First 1
     $full   = Get-WmiObject -Namespace root/WMI -Class BatteryFullChargedCapacity -ErrorAction Stop | Select-Object -First 1
@@ -103,7 +110,9 @@ try {
         $pct        = [math]::Round($full.FullChargedCapacity / $static.DesignedCapacity * 100)
         $design_wh  = [math]::Round($static.DesignedCapacity / 1000, 1)
         $current_wh = [math]::Round($full.FullChargedCapacity / 1000, 1)
-        $battery_str = "${pct}% (${current_wh} Wh / ${design_wh} Wh)"
+        $battery_pct_str       = [string]$pct
+        $battery_wh_str        = [string]$current_wh
+        $battery_wh_design_str = [string]$design_wh
     }
 } catch {}
 
@@ -130,11 +139,11 @@ Write-Host "  Merk     : $merk    Model: $model"
 Write-Host "  CPU      : $cpu_name"
 Write-Host "           : $cpu_cores cores / $cpu_threads threads / $cpu_arch"
 Write-Host "  GPU      : $gpu_str"
-Write-Host "  RAM      : $ram_size_str  $ram_type_str  $ram_speed_str  [Usage: $ram_usage_str]"
-Write-Host "  SSD      : $ssd_str"
-Write-Host "  HDD      : $hdd_str"
-Write-Host "  Partisi  : $os_free_str"
-Write-Host "  Battery  : $battery_str"
+Write-Host "  RAM      : ${ram_gb_str} GB  $ram_type_str  ${ram_speed_str} MHz  [Usage: ${ram_usage_pct_str}% / ${ram_usage_gb_str} GB]"
+Write-Host "  SSD      : ${ssd_gb_str} GB ($ssd_tipe_str)"
+Write-Host "  HDD      : ${hdd_gb_str} GB"
+Write-Host "  Partisi  : OS Free ${os_free_gb_str} GB / ${os_total_gb_str} GB"
+Write-Host "  Battery  : ${battery_pct_str}% (${battery_wh_str} Wh / ${battery_wh_design_str} Wh)"
 Write-Host "  OS       : $os_str"
 Write-Host ""
 
@@ -148,15 +157,20 @@ $params = "hostname=$(Encode $hostname)" +
           "&cpu_threads=$(Encode $cpu_threads)" +
           "&cpu_arch=$(Encode $cpu_arch)" +
           "&gpu=$(Encode $gpu_str)" +
-          "&ram_size=$(Encode $ram_size_str)" +
+          "&ram_gb=$(Encode $ram_gb_str)" +
           "&ram_type=$(Encode $ram_type_str)" +
           "&ram_speed=$(Encode $ram_speed_str)" +
-          "&ram_usage=$(Encode $ram_usage_str)" +
-          "&ssd=$(Encode $ssd_str)" +
-          "&hdd=$(Encode $hdd_str)" +
-          "&os_free=$(Encode $os_free_str)" +
-          "&battery=$(Encode $battery_str)" +
+          "&ram_usage_pct=$(Encode $ram_usage_pct_str)" +
+          "&ram_usage_gb=$(Encode $ram_usage_gb_str)" +
+          "&ssd_gb=$(Encode $ssd_gb_str)" +
+          "&ssd_tipe=$(Encode $ssd_tipe_str)" +
+          "&hdd_gb=$(Encode $hdd_gb_str)" +
+          "&battery_pct=$(Encode $battery_pct_str)" +
+          "&battery_wh=$(Encode $battery_wh_str)" +
+          "&battery_wh_design=$(Encode $battery_wh_design_str)" +
           "&os=$(Encode $os_str)" +
+          "&os_free_gb=$(Encode $os_free_gb_str)" +
+          "&os_total_gb=$(Encode $os_total_gb_str)" +
           "&serial=$(Encode $serial)" +
           "&mac=$(Encode $mac_str)"
 
