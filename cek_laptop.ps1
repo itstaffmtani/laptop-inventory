@@ -70,7 +70,7 @@ Write-Host ""
 
 # ── Buka form di browser ─────────────────────────────────────
 
-$FORM_URL = "GANTI_DENGAN_URL_FORM_KAMU"
+$FORM_URL = "https://itstaffmtani.github.io/laptop-inventory/"
 
 $params = "merk=$(Encode $merk)" +
           "&model=$(Encode $model)" +
