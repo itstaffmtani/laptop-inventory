@@ -19,8 +19,8 @@
         <h1 class="text-[22px] font-semibold text-stone-900 leading-tight">
           Inventarisasi Laptop
         </h1>
-        <p class="text-sm text-stone-500 mt-1.5">
-          Spesifikasi terisi otomatis. Lengkapi data diri dan klik Kirim.
+        <p class="text-sm text-stone-500 mt-1.5" id="subtitle">
+          Jalankan script untuk mengisi otomatis, lalu lengkapi data diri.
         </p>
       </div>
 
@@ -40,6 +40,43 @@
       >
         <i data-lucide="circle-alert" class="w-4 h-4 shrink-0"></i>
         <span id="error-msg">Terjadi kesalahan. Coba lagi.</span>
+      </div>
+
+      <!-- Script Download Guide -->
+      <div
+        id="script-guide"
+        style="display: none"
+        class="bg-sky-50 border border-sky-200 rounded-xl p-5 mb-4"
+      >
+        <div class="flex items-center gap-2 mb-3">
+          <i data-lucide="terminal" class="w-3.5 h-3.5 text-sky-600"></i>
+          <span
+            class="text-[11px] font-semibold tracking-widest uppercase text-sky-600"
+            >Isi Otomatis</span
+          >
+        </div>
+        <p class="text-sm font-medium text-sky-800 mb-0.5">
+          Jalankan script ini agar spesifikasi terisi otomatis.
+        </p>
+        <p id="guide-os-note" class="text-xs text-sky-500 mb-3"></p>
+        <div class="flex items-center gap-3 flex-wrap mb-3">
+          <a
+            id="guide-dl-btn"
+            href="#"
+            download
+            class="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg hover:bg-sky-700 transition-colors"
+          >
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span id="guide-dl-label">Download Script</span>
+          </a>
+          <span class="text-xs text-sky-500"
+            >Download → jalankan → form terbuka otomatis</span
+          >
+        </div>
+        <ol
+          id="guide-steps"
+          class="text-xs text-sky-700 space-y-1 list-decimal list-inside"
+        ></ol>
       </div>
 
       <div id="form-area">
@@ -906,6 +943,62 @@
       document.getElementById("manual-badge").style.display = anyFilled
         ? "none"
         : "inline-flex";
+
+      if (anyFilled) {
+        document.getElementById("subtitle").textContent =
+          "Spesifikasi terisi otomatis. Lengkapi data diri dan klik Kirim.";
+      }
+
+      // Show OS-aware download guide when not coming from script
+      if (!anyFilled) {
+        const p = window.location.pathname;
+        const BASE_URL =
+          window.location.origin +
+          p.substring(0, p.lastIndexOf("/") + 1);
+
+        const ua = navigator.userAgent.toLowerCase();
+        const plat = (navigator.platform || "").toLowerCase();
+        const isWin = plat.includes("win") || ua.includes("windows");
+        const isMac = plat.includes("mac") || ua.includes("macintosh");
+
+        const guide    = document.getElementById("script-guide");
+        const osNote   = document.getElementById("guide-os-note");
+        const dlBtn    = document.getElementById("guide-dl-btn");
+        const dlLabel  = document.getElementById("guide-dl-label");
+        const stepsEl  = document.getElementById("guide-steps");
+
+        if (isWin) {
+          osNote.textContent = "Terdeteksi: Windows";
+          dlBtn.href = BASE_URL + "check_laptop.bat";
+          dlLabel.textContent = "Download check_laptop.bat";
+          stepsEl.innerHTML =
+            "<li>Download file di atas</li>" +
+            "<li>Double-click <strong>check_laptop.bat</strong> yang didownload</li>" +
+            "<li>Klik <em>Run</em> jika muncul peringatan Windows Defender</li>" +
+            "<li>Form ini akan terbuka otomatis dengan spesifikasi terisi</li>";
+        } else if (isMac) {
+          osNote.textContent = "Terdeteksi: macOS";
+          dlBtn.href = BASE_URL + "check_laptop.sh";
+          dlLabel.textContent = "Download check_laptop.sh";
+          stepsEl.innerHTML =
+            "<li>Download file di atas</li>" +
+            "<li>Buka <strong>Terminal</strong> (Spotlight → ketik \"Terminal\" → Enter)</li>" +
+            "<li>Ketik <code class=\"bg-sky-100 px-1 rounded font-mono\">bash&nbsp;</code> lalu <strong>drag</strong> file yang didownload ke Terminal, tekan Enter</li>" +
+            "<li>Form ini akan terbuka otomatis dengan spesifikasi terisi</li>";
+        } else {
+          osNote.textContent = "Terdeteksi: Linux";
+          dlBtn.href = BASE_URL + "check_laptop.sh";
+          dlLabel.textContent = "Download check_laptop.sh";
+          stepsEl.innerHTML =
+            "<li>Download file di atas</li>" +
+            "<li>Buka <strong>Terminal</strong></li>" +
+            "<li>Jalankan: <code class=\"bg-sky-100 px-1 rounded font-mono\">bash ~/Downloads/check_laptop.sh</code></li>" +
+            "<li>Form ini akan terbuka otomatis dengan spesifikasi terisi</li>";
+        }
+
+        guide.style.display = "block";
+        lucide.createIcons();
+      }
 
       function toggleChargerType() {
         const checked = document.getElementById("k-charger").checked;
