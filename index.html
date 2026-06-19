@@ -307,6 +307,26 @@
           </div>
 
           <div class="field">
+            <label for="jabatan">Jabatan <span class="req">*</span></label>
+            <input
+              type="text"
+              id="jabatan"
+              placeholder="Staff IT, Finance Officer, dll."
+            />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="perusahaan">Perusahaan</label>
+              <input type="text" id="perusahaan" placeholder="Nama perusahaan" />
+            </div>
+            <div class="field">
+              <label for="penempatan">Penempatan</label>
+              <input type="text" id="penempatan" placeholder="Kota / cabang" />
+            </div>
+          </div>
+
+          <div class="field">
             <label>Status laptop <span class="req">*</span></label>
             <div class="radio-group">
               <div class="radio-opt">
@@ -452,12 +472,18 @@
 
       async function submitForm() {
         const nama = document.getElementById("nama").value.trim();
+        const jabatan = document.getElementById("jabatan").value.trim();
         const status = document.querySelector("input[name=status]:checked");
         const merk = document.getElementById("merk").value.trim();
 
         if (!nama) {
           showError("Nama lengkap wajib diisi.");
           document.getElementById("nama").focus();
+          return;
+        }
+        if (!jabatan) {
+          showError("Jabatan wajib diisi.");
+          document.getElementById("jabatan").focus();
           return;
         }
         if (!status) {
@@ -479,6 +505,9 @@
             timeZone: "Asia/Jakarta",
           }),
           nama,
+          jabatan,
+          perusahaan: document.getElementById("perusahaan").value.trim() || "-",
+          penempatan: document.getElementById("penempatan").value.trim() || "-",
           status: status.value,
           merk,
           model: document.getElementById("model").value.trim() || "-",
