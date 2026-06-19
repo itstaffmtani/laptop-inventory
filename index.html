@@ -8,86 +8,147 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   </head>
   <body class="bg-stone-100 min-h-screen py-8 px-4 text-stone-900">
-
     <div class="max-w-lg mx-auto">
-
       <!-- Header -->
       <div class="text-center mb-6">
-        <p class="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mb-1.5">MTani · PT Semangat Bersama</p>
-        <h1 class="text-[22px] font-semibold text-stone-900 leading-tight">Inventarisasi Laptop</h1>
-        <p class="text-sm text-stone-500 mt-1.5">Spesifikasi terisi otomatis. Lengkapi data diri dan klik Kirim.</p>
+        <p
+          class="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mb-1.5"
+        >
+          MTani
+        </p>
+        <h1 class="text-[22px] font-semibold text-stone-900 leading-tight">
+          Inventarisasi Laptop
+        </h1>
+        <p class="text-sm text-stone-500 mt-1.5">
+          Spesifikasi terisi otomatis. Lengkapi data diri dan klik Kirim.
+        </p>
       </div>
 
       <!-- Alerts -->
-      <div id="alert-success" style="display:none"
-        class="mb-4 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm">
+      <div
+        id="alert-success"
+        style="display: none"
+        class="mb-4 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm"
+      >
         <i data-lucide="circle-check" class="w-4 h-4 shrink-0"></i>
         Data berhasil dikirim! Terima kasih.
       </div>
-      <div id="alert-error" style="display:none"
-        class="mb-4 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
+      <div
+        id="alert-error"
+        style="display: none"
+        class="mb-4 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm"
+      >
         <i data-lucide="circle-alert" class="w-4 h-4 shrink-0"></i>
         <span id="error-msg">Terjadi kesalahan. Coba lagi.</span>
       </div>
 
       <div id="form-area">
-
         <!-- ── 1. Data Diri ── -->
         <div class="bg-white border border-stone-200 rounded-xl p-5 mb-4">
           <div class="flex items-center gap-2 mb-4">
             <i data-lucide="user" class="w-3.5 h-3.5 text-stone-400"></i>
-            <span class="text-[11px] font-semibold tracking-widest uppercase text-stone-400">Data Diri</span>
+            <span
+              class="text-[11px] font-semibold tracking-widest uppercase text-stone-400"
+              >Data Diri</span
+            >
           </div>
 
           <div class="space-y-3.5">
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1" for="nama">
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1"
+                for="nama"
+              >
                 Nama lengkap <span class="text-red-500">*</span>
               </label>
-              <input type="text" id="nama" placeholder="Nama sesuai kartu karyawan" autocomplete="name"
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+              <input
+                type="text"
+                id="nama"
+                placeholder="Nama sesuai kartu karyawan"
+                autocomplete="name"
+                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+              />
             </div>
 
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1" for="jabatan">
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1"
+                for="jabatan"
+              >
                 Jabatan <span class="text-red-500">*</span>
               </label>
-              <input type="text" id="jabatan" placeholder="Staff IT, Finance Officer, dll."
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+              <input
+                type="text"
+                id="jabatan"
+                placeholder="Staff IT, Finance Officer, dll."
+                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+              />
             </div>
 
             <div class="grid grid-cols-2 gap-2.5">
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="perusahaan">
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="perusahaan"
+                >
                   Perusahaan <span class="text-red-500">*</span>
                 </label>
-                <input type="text" id="perusahaan" placeholder="Nama perusahaan"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <input
+                  type="text"
+                  id="perusahaan"
+                  placeholder="Nama perusahaan"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="penempatan">
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="penempatan"
+                >
                   Penempatan <span class="text-red-500">*</span>
                 </label>
-                <input type="text" id="penempatan" placeholder="Kota / cabang"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <input
+                  type="text"
+                  id="penempatan"
+                  placeholder="Kota / cabang"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
             </div>
 
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1.5">
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1.5"
+              >
                 Status laptop <span class="text-red-500">*</span>
               </label>
               <div class="flex gap-2">
                 <label class="flex-1 cursor-pointer">
-                  <input type="radio" name="status" id="s-kantor" value="Kantor" class="sr-only peer" />
-                  <div class="flex items-center justify-center gap-1.5 py-2.5 px-3 border border-stone-200 rounded-lg text-sm text-stone-500 transition-all peer-checked:border-sky-400 peer-checked:bg-sky-50 peer-checked:text-sky-700 peer-checked:font-medium">
+                  <input
+                    type="radio"
+                    name="status"
+                    id="s-kantor"
+                    value="Kantor"
+                    class="sr-only peer"
+                  />
+                  <div
+                    class="flex items-center justify-center gap-1.5 py-2.5 px-3 border border-stone-200 rounded-lg text-sm text-stone-500 transition-all peer-checked:border-sky-400 peer-checked:bg-sky-50 peer-checked:text-sky-700 peer-checked:font-medium"
+                  >
                     <i data-lucide="building-2" class="w-4 h-4 shrink-0"></i>
                     Inventaris kantor
                   </div>
                 </label>
                 <label class="flex-1 cursor-pointer">
-                  <input type="radio" name="status" id="s-pribadi" value="Pribadi" class="sr-only peer" />
-                  <div class="flex items-center justify-center gap-1.5 py-2.5 px-3 border border-stone-200 rounded-lg text-sm text-stone-500 transition-all peer-checked:border-sky-400 peer-checked:bg-sky-50 peer-checked:text-sky-700 peer-checked:font-medium">
+                  <input
+                    type="radio"
+                    name="status"
+                    id="s-pribadi"
+                    value="Pribadi"
+                    class="sr-only peer"
+                  />
+                  <div
+                    class="flex items-center justify-center gap-1.5 py-2.5 px-3 border border-stone-200 rounded-lg text-sm text-stone-500 transition-all peer-checked:border-sky-400 peer-checked:bg-sky-50 peer-checked:text-sky-700 peer-checked:font-medium"
+                  >
                     <i data-lucide="home" class="w-4 h-4 shrink-0"></i>
                     Milik pribadi
                   </div>
@@ -101,34 +162,71 @@
         <div class="bg-white border border-stone-200 rounded-xl p-5 mb-4">
           <div class="flex items-center gap-2 mb-4">
             <i data-lucide="tag" class="w-3.5 h-3.5 text-stone-400"></i>
-            <span class="text-[11px] font-semibold tracking-widest uppercase text-stone-400">Identitas Aset</span>
+            <span
+              class="text-[11px] font-semibold tracking-widest uppercase text-stone-400"
+              >Identitas Aset</span
+            >
           </div>
 
           <div class="space-y-3.5">
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1" for="no_asset">No. Asset IT</label>
-              <input type="text" id="no_asset" placeholder="Kode stiker inventaris (jika ada)"
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
-              <p class="text-xs text-stone-400 mt-1">Kosongkan jika belum ada kode asset.</p>
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1"
+                for="no_asset"
+                >No. Asset IT</label
+              >
+              <input
+                type="text"
+                id="no_asset"
+                placeholder="Kode stiker inventaris (jika ada)"
+                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+              />
+              <p class="text-xs text-stone-400 mt-1">
+                Kosongkan jika belum ada kode asset.
+              </p>
             </div>
 
             <div class="grid grid-cols-2 gap-2.5">
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="hostname">Hostname</label>
-                <input type="text" id="hostname" placeholder="Nama komputer"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="hostname"
+                  >Hostname</label
+                >
+                <input
+                  type="text"
+                  id="hostname"
+                  placeholder="Nama komputer"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="mac">MAC Address</label>
-                <input type="text" id="mac" placeholder="AA:BB:CC:DD:EE:FF"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="mac"
+                  >MAC Address</label
+                >
+                <input
+                  type="text"
+                  id="mac"
+                  placeholder="AA:BB:CC:DD:EE:FF"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
             </div>
 
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1" for="serial">Serial Number</label>
-              <input type="text" id="serial" placeholder="S/N dari BIOS"
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1"
+                for="serial"
+                >Serial Number</label
+              >
+              <input
+                type="text"
+                id="serial"
+                placeholder="S/N dari BIOS"
+                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+              />
             </div>
           </div>
         </div>
@@ -137,16 +235,25 @@
         <div class="bg-white border border-stone-200 rounded-xl p-5 mb-4">
           <div class="flex items-center gap-2 mb-4">
             <i data-lucide="cpu" class="w-3.5 h-3.5 text-stone-400"></i>
-            <span class="text-[11px] font-semibold tracking-widest uppercase text-stone-400">Spesifikasi Hardware</span>
+            <span
+              class="text-[11px] font-semibold tracking-widest uppercase text-stone-400"
+              >Spesifikasi Hardware</span
+            >
           </div>
 
-          <div id="auto-badge" style="display:none"
-            class="mb-4 inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full bg-green-50 border border-green-200 text-green-700">
+          <div
+            id="auto-badge"
+            style="display: none"
+            class="mb-4 inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full bg-green-50 border border-green-200 text-green-700"
+          >
             <i data-lucide="circle-check" class="w-3.5 h-3.5"></i>
             Terdeteksi otomatis dari perangkat ini
           </div>
-          <div id="manual-badge" style="display:none"
-            class="mb-4 inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-700">
+          <div
+            id="manual-badge"
+            style="display: none"
+            class="mb-4 inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-700"
+          >
             <i data-lucide="triangle-alert" class="w-3.5 h-3.5"></i>
             Spesifikasi tidak terdeteksi — isi secara manual
           </div>
@@ -154,86 +261,191 @@
           <div class="space-y-3.5">
             <div class="grid grid-cols-2 gap-2.5">
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="merk">
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="merk"
+                >
                   Merk <span class="text-red-500">*</span>
                 </label>
-                <input type="text" id="merk" placeholder="Lenovo, HP, ASUS, Apple..."
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <input
+                  type="text"
+                  id="merk"
+                  placeholder="Lenovo, HP, ASUS, Apple..."
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="model">Model</label>
-                <input type="text" id="model" placeholder="ThinkPad E14"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="model"
+                  >Model</label
+                >
+                <input
+                  type="text"
+                  id="model"
+                  placeholder="ThinkPad E14"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
             </div>
 
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1" for="cpu">Processor (CPU)</label>
-              <input type="text" id="cpu" placeholder="Intel Core i7-12700H"
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1"
+                for="cpu"
+                >Processor (CPU)</label
+              >
+              <input
+                type="text"
+                id="cpu"
+                placeholder="Intel Core i7-12700H"
+                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+              />
             </div>
 
             <div class="grid grid-cols-3 gap-2">
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="cpu_cores">Core Fisik</label>
-                <input type="text" id="cpu_cores" placeholder="8"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="cpu_cores"
+                  >Core Fisik</label
+                >
+                <input
+                  type="text"
+                  id="cpu_cores"
+                  placeholder="8"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="cpu_threads">Thread</label>
-                <input type="text" id="cpu_threads" placeholder="16"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="cpu_threads"
+                  >Thread</label
+                >
+                <input
+                  type="text"
+                  id="cpu_threads"
+                  placeholder="16"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="cpu_arch">Arsitektur</label>
-                <input type="text" id="cpu_arch" placeholder="x64"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="cpu_arch"
+                  >Arsitektur</label
+                >
+                <input
+                  type="text"
+                  id="cpu_arch"
+                  placeholder="x64"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
             </div>
 
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1" for="gpu">GPU / Graphics</label>
-              <input type="text" id="gpu" placeholder="Intel Iris Xe / NVIDIA RTX 3050"
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1"
+                for="gpu"
+                >GPU / Graphics</label
+              >
+              <input
+                type="text"
+                id="gpu"
+                placeholder="Intel Iris Xe / NVIDIA RTX 3050"
+                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+              />
             </div>
 
             <hr class="border-stone-100" />
 
             <div class="grid grid-cols-3 gap-2">
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="ram_size">RAM</label>
-                <input type="text" id="ram_size" placeholder="16 GB"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="ram_size"
+                  >RAM</label
+                >
+                <input
+                  type="text"
+                  id="ram_size"
+                  placeholder="16 GB"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="ram_type">Tipe</label>
-                <input type="text" id="ram_type" placeholder="DDR4"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="ram_type"
+                  >Tipe</label
+                >
+                <input
+                  type="text"
+                  id="ram_type"
+                  placeholder="DDR4"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="ram_speed">Speed</label>
-                <input type="text" id="ram_speed" placeholder="3200 MHz"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="ram_speed"
+                  >Speed</label
+                >
+                <input
+                  type="text"
+                  id="ram_speed"
+                  placeholder="3200 MHz"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
             </div>
 
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1" for="ram_usage">Penggunaan RAM Saat Ini</label>
-              <input type="text" id="ram_usage" placeholder="45% (7.2 GB digunakan)"
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
-              <p class="text-xs text-stone-400 mt-1">Snapshot saat script dijalankan.</p>
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1"
+                for="ram_usage"
+                >Penggunaan RAM Saat Ini</label
+              >
+              <input
+                type="text"
+                id="ram_usage"
+                placeholder="45% (7.2 GB digunakan)"
+                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+              />
+              <p class="text-xs text-stone-400 mt-1">
+                Snapshot saat script dijalankan.
+              </p>
             </div>
 
             <div class="grid grid-cols-2 gap-2.5">
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="ssd">SSD</label>
-                <input type="text" id="ssd" placeholder="512 GB NVMe"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="ssd"
+                  >SSD</label
+                >
+                <input
+                  type="text"
+                  id="ssd"
+                  placeholder="512 GB NVMe"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="hdd">HDD</label>
-                <input type="text" id="hdd" placeholder="1 TB (kosong jika tidak ada)"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="hdd"
+                  >HDD</label
+                >
+                <input
+                  type="text"
+                  id="hdd"
+                  placeholder="1 TB (kosong jika tidak ada)"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
             </div>
 
@@ -241,21 +453,45 @@
 
             <div class="grid grid-cols-2 gap-2.5">
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="battery">Battery Health</label>
-                <input type="text" id="battery" placeholder="78% (44 Wh / 57 Wh)"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="battery"
+                  >Battery Health</label
+                >
+                <input
+                  type="text"
+                  id="battery"
+                  placeholder="78% (44 Wh / 57 Wh)"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
               <div>
-                <label class="block text-[13px] font-medium text-stone-600 mb-1" for="os">Sistem Operasi</label>
-                <input type="text" id="os" placeholder="Windows 11 Pro 64-bit"
-                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+                <label
+                  class="block text-[13px] font-medium text-stone-600 mb-1"
+                  for="os"
+                  >Sistem Operasi</label
+                >
+                <input
+                  type="text"
+                  id="os"
+                  placeholder="Windows 11 Pro 64-bit"
+                  class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+                />
               </div>
             </div>
 
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1" for="os_free">Ruang Bebas Partisi OS</label>
-              <input type="text" id="os_free" placeholder="C: 120 GB free / 256 GB"
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1"
+                for="os_free"
+                >Ruang Bebas Partisi OS</label
+              >
+              <input
+                type="text"
+                id="os_free"
+                placeholder="C: 120 GB free / 256 GB"
+                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+              />
             </div>
           </div>
         </div>
@@ -263,34 +499,69 @@
         <!-- ── 4. Kondisi & Kelengkapan ── -->
         <div class="bg-white border border-stone-200 rounded-xl p-5 mb-4">
           <div class="flex items-center gap-2 mb-4">
-            <i data-lucide="clipboard-list" class="w-3.5 h-3.5 text-stone-400"></i>
-            <span class="text-[11px] font-semibold tracking-widest uppercase text-stone-400">Kondisi & Kelengkapan</span>
+            <i
+              data-lucide="clipboard-list"
+              class="w-3.5 h-3.5 text-stone-400"
+            ></i>
+            <span
+              class="text-[11px] font-semibold tracking-widest uppercase text-stone-400"
+              >Kondisi & Kelengkapan</span
+            >
           </div>
 
           <div class="space-y-4">
             <!-- Kondisi fisik -->
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1.5">
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1.5"
+              >
                 Kondisi fisik <span class="text-red-500">*</span>
               </label>
               <div class="flex gap-2">
                 <label class="flex-1 cursor-pointer">
-                  <input type="radio" name="kondisi" id="k-baik" value="Baik" class="sr-only peer" />
-                  <div class="flex items-center justify-center gap-1.5 py-2.5 px-2 border border-stone-200 rounded-lg text-sm text-stone-500 transition-all peer-checked:border-green-400 peer-checked:bg-green-50 peer-checked:text-green-700 peer-checked:font-medium">
+                  <input
+                    type="radio"
+                    name="kondisi"
+                    id="k-baik"
+                    value="Baik"
+                    class="sr-only peer"
+                  />
+                  <div
+                    class="flex items-center justify-center gap-1.5 py-2.5 px-2 border border-stone-200 rounded-lg text-sm text-stone-500 transition-all peer-checked:border-green-400 peer-checked:bg-green-50 peer-checked:text-green-700 peer-checked:font-medium"
+                  >
                     <i data-lucide="circle-check" class="w-4 h-4 shrink-0"></i>
                     Baik
                   </div>
                 </label>
                 <label class="flex-1 cursor-pointer">
-                  <input type="radio" name="kondisi" id="k-cukup" value="Cukup" class="sr-only peer" />
-                  <div class="flex items-center justify-center gap-1.5 py-2.5 px-2 border border-stone-200 rounded-lg text-sm text-stone-500 transition-all peer-checked:border-amber-400 peer-checked:bg-amber-50 peer-checked:text-amber-700 peer-checked:font-medium">
-                    <i data-lucide="triangle-alert" class="w-4 h-4 shrink-0"></i>
+                  <input
+                    type="radio"
+                    name="kondisi"
+                    id="k-cukup"
+                    value="Cukup"
+                    class="sr-only peer"
+                  />
+                  <div
+                    class="flex items-center justify-center gap-1.5 py-2.5 px-2 border border-stone-200 rounded-lg text-sm text-stone-500 transition-all peer-checked:border-amber-400 peer-checked:bg-amber-50 peer-checked:text-amber-700 peer-checked:font-medium"
+                  >
+                    <i
+                      data-lucide="triangle-alert"
+                      class="w-4 h-4 shrink-0"
+                    ></i>
                     Cukup
                   </div>
                 </label>
                 <label class="flex-1 cursor-pointer">
-                  <input type="radio" name="kondisi" id="k-kurang" value="Kurang" class="sr-only peer" />
-                  <div class="flex items-center justify-center gap-1.5 py-2.5 px-2 border border-stone-200 rounded-lg text-sm text-stone-500 transition-all peer-checked:border-red-400 peer-checked:bg-red-50 peer-checked:text-red-600 peer-checked:font-medium">
+                  <input
+                    type="radio"
+                    name="kondisi"
+                    id="k-kurang"
+                    value="Kurang"
+                    class="sr-only peer"
+                  />
+                  <div
+                    class="flex items-center justify-center gap-1.5 py-2.5 px-2 border border-stone-200 rounded-lg text-sm text-stone-500 transition-all peer-checked:border-red-400 peer-checked:bg-red-50 peer-checked:text-red-600 peer-checked:font-medium"
+                  >
                     <i data-lucide="circle-x" class="w-4 h-4 shrink-0"></i>
                     Kurang
                   </div>
@@ -300,67 +571,138 @@
 
             <!-- Kelengkapan checklist -->
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-0.5">
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-0.5"
+              >
                 Kelengkapan <span class="text-red-500">*</span>
               </label>
-              <p class="text-xs text-stone-400 mb-2">Centang semua yang disertakan bersama laptop.</p>
+              <p class="text-xs text-stone-400 mb-2">
+                Centang semua yang disertakan bersama laptop.
+              </p>
               <div class="space-y-1.5">
-
                 <!-- Charger -->
-                <label class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50">
-                  <input type="checkbox" id="k-charger" class="w-4 h-4 accent-sky-500 shrink-0" onchange="toggleChargerType()" />
+                <label
+                  class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50"
+                >
+                  <input
+                    type="checkbox"
+                    id="k-charger"
+                    class="w-4 h-4 accent-sky-500 shrink-0"
+                    onchange="toggleChargerType()"
+                  />
                   <div class="flex items-center gap-2 text-sm text-stone-700">
-                    <i data-lucide="zap" class="w-4 h-4 text-stone-400 shrink-0"></i>
+                    <i
+                      data-lucide="zap"
+                      class="w-4 h-4 text-stone-400 shrink-0"
+                    ></i>
                     Charger
                   </div>
                 </label>
                 <!-- Charger type sub-option -->
-                <div id="charger-type-group" class="hidden ml-3 pl-3.5 border-l-2 border-sky-200 py-1">
+                <div
+                  id="charger-type-group"
+                  class="hidden ml-3 pl-3.5 border-l-2 border-sky-200 py-1"
+                >
                   <p class="text-xs text-stone-500 mb-1.5">Tipe charger:</p>
                   <div class="flex gap-2">
                     <label class="flex-1 cursor-pointer">
-                      <input type="radio" name="charger_type" id="ct-ori" value="Ori" class="sr-only peer" />
-                      <div class="text-center py-1.5 px-3 border border-stone-200 rounded-lg text-xs text-stone-500 transition-all peer-checked:border-sky-400 peer-checked:bg-sky-50 peer-checked:text-sky-700 peer-checked:font-medium">
+                      <input
+                        type="radio"
+                        name="charger_type"
+                        id="ct-ori"
+                        value="Ori"
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="text-center py-1.5 px-3 border border-stone-200 rounded-lg text-xs text-stone-500 transition-all peer-checked:border-sky-400 peer-checked:bg-sky-50 peer-checked:text-sky-700 peer-checked:font-medium"
+                      >
                         Ori / Bawaan
                       </div>
                     </label>
                     <label class="flex-1 cursor-pointer">
-                      <input type="radio" name="charger_type" id="ct-kw" value="KW/Compatible" class="sr-only peer" />
-                      <div class="text-center py-1.5 px-3 border border-stone-200 rounded-lg text-xs text-stone-500 transition-all peer-checked:border-sky-400 peer-checked:bg-sky-50 peer-checked:text-sky-700 peer-checked:font-medium">
+                      <input
+                        type="radio"
+                        name="charger_type"
+                        id="ct-kw"
+                        value="KW/Compatible"
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="text-center py-1.5 px-3 border border-stone-200 rounded-lg text-xs text-stone-500 transition-all peer-checked:border-sky-400 peer-checked:bg-sky-50 peer-checked:text-sky-700 peer-checked:font-medium"
+                      >
                         KW / Compatible
                       </div>
                     </label>
                   </div>
                 </div>
 
-                <label class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50">
-                  <input type="checkbox" id="k-tas" class="w-4 h-4 accent-sky-500 shrink-0" />
+                <label
+                  class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50"
+                >
+                  <input
+                    type="checkbox"
+                    id="k-tas"
+                    class="w-4 h-4 accent-sky-500 shrink-0"
+                  />
                   <div class="flex items-center gap-2 text-sm text-stone-700">
-                    <i data-lucide="briefcase" class="w-4 h-4 text-stone-400 shrink-0"></i>
+                    <i
+                      data-lucide="briefcase"
+                      class="w-4 h-4 text-stone-400 shrink-0"
+                    ></i>
                     Tas Laptop
                   </div>
                 </label>
 
-                <label class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50">
-                  <input type="checkbox" id="k-mouse" class="w-4 h-4 accent-sky-500 shrink-0" />
+                <label
+                  class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50"
+                >
+                  <input
+                    type="checkbox"
+                    id="k-mouse"
+                    class="w-4 h-4 accent-sky-500 shrink-0"
+                  />
                   <div class="flex items-center gap-2 text-sm text-stone-700">
-                    <i data-lucide="mouse" class="w-4 h-4 text-stone-400 shrink-0"></i>
+                    <i
+                      data-lucide="mouse"
+                      class="w-4 h-4 text-stone-400 shrink-0"
+                    ></i>
                     Mouse
                   </div>
                 </label>
 
-                <label class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50">
-                  <input type="checkbox" id="k-docking" class="w-4 h-4 accent-sky-500 shrink-0" />
+                <label
+                  class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50"
+                >
+                  <input
+                    type="checkbox"
+                    id="k-docking"
+                    class="w-4 h-4 accent-sky-500 shrink-0"
+                  />
                   <div class="flex items-center gap-2 text-sm text-stone-700">
-                    <i data-lucide="plug" class="w-4 h-4 text-stone-400 shrink-0"></i>
+                    <i
+                      data-lucide="plug"
+                      class="w-4 h-4 text-stone-400 shrink-0"
+                    ></i>
                     Docking / Hub
                   </div>
                 </label>
 
-                <label class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50">
-                  <input type="checkbox" id="k-tidakada" class="w-4 h-4 accent-sky-500 shrink-0" onchange="toggleTidakAda()" />
-                  <div class="flex items-center gap-2 text-sm text-stone-500 italic">
-                    <i data-lucide="package-x" class="w-4 h-4 text-stone-300 shrink-0"></i>
+                <label
+                  class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50"
+                >
+                  <input
+                    type="checkbox"
+                    id="k-tidakada"
+                    class="w-4 h-4 accent-sky-500 shrink-0"
+                    onchange="toggleTidakAda()"
+                  />
+                  <div
+                    class="flex items-center gap-2 text-sm text-stone-500 italic"
+                  >
+                    <i
+                      data-lucide="package-x"
+                      class="w-4 h-4 text-stone-300 shrink-0"
+                    ></i>
                     Tidak ada kelengkapan
                   </div>
                 </label>
@@ -368,23 +710,43 @@
             </div>
 
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1" for="tahun_beli">Tahun Pembelian</label>
-              <input type="text" id="tahun_beli" placeholder="2022"
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition" />
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1"
+                for="tahun_beli"
+                >Tahun Pembelian</label
+              >
+              <input
+                type="text"
+                id="tahun_beli"
+                placeholder="2022"
+                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition"
+              />
             </div>
 
             <div>
-              <label class="block text-[13px] font-medium text-stone-600 mb-1" for="kerusakan">Kerusakan / Keluhan</label>
-              <textarea id="kerusakan" rows="3"
+              <label
+                class="block text-[13px] font-medium text-stone-600 mb-1"
+                for="kerusakan"
+                >Kerusakan / Keluhan</label
+              >
+              <textarea
+                id="kerusakan"
+                rows="3"
                 placeholder="Kosongkan jika normal. Contoh: baterai bocor, layar retak, keyboard macet..."
-                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition resize-y"></textarea>
-              <p class="text-xs text-stone-400 mt-1">Tulis "Tidak ada" jika kondisi baik.</p>
+                class="w-full px-3 py-2 text-sm border border-stone-300 rounded-lg text-stone-900 placeholder-stone-400 outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition resize-y"
+              ></textarea>
+              <p class="text-xs text-stone-400 mt-1">
+                Tulis "Tidak ada" jika kondisi baik.
+              </p>
             </div>
           </div>
         </div>
 
-        <button id="btn-submit" onclick="submitForm()"
-          class="w-full py-3 px-4 bg-stone-900 text-white text-[15px] font-medium rounded-xl hover:bg-stone-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors mt-1">
+        <button
+          id="btn-submit"
+          onclick="submitForm()"
+          class="w-full py-3 px-4 bg-stone-900 text-white text-[15px] font-medium rounded-xl hover:bg-stone-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors mt-1"
+        >
           Kirim data →
         </button>
 
@@ -396,13 +758,18 @@
       <!-- Success screen -->
       <div id="success-screen" class="hidden text-center py-16 px-4">
         <div class="flex justify-center mb-5">
-          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+          <div
+            class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center"
+          >
             <i data-lucide="check" class="w-8 h-8 text-green-600"></i>
           </div>
         </div>
-        <h2 class="text-xl font-semibold text-stone-900 mb-2">Data berhasil dikirim!</h2>
+        <h2 class="text-xl font-semibold text-stone-900 mb-2">
+          Data berhasil dikirim!
+        </h2>
         <p class="text-sm text-stone-500">
-          Terima kasih, <strong id="nama-confirm" class="text-stone-700"></strong>.<br />
+          Terima kasih,
+          <strong id="nama-confirm" class="text-stone-700"></strong>.<br />
           Jendela ini sudah bisa ditutup.
         </p>
       </div>
@@ -415,53 +782,70 @@
 
       function fillField(id, key) {
         const val = params.get(key);
-        const el  = document.getElementById(id);
-        if (!el || !val || !val.trim() || val.toLowerCase().includes("tidak diketahui")) return false;
+        const el = document.getElementById(id);
+        if (
+          !el ||
+          !val ||
+          !val.trim() ||
+          val.toLowerCase().includes("tidak diketahui")
+        )
+          return false;
         el.value = val.trim();
         el.classList.add("bg-stone-50", "text-stone-600");
         return true;
       }
 
       const autoResults = [
-        fillField("hostname",    "hostname"),
-        fillField("mac",         "mac"),
-        fillField("serial",      "serial"),
-        fillField("merk",        "merk"),
-        fillField("model",       "model"),
-        fillField("cpu",         "cpu"),
-        fillField("cpu_cores",   "cpu_cores"),
+        fillField("hostname", "hostname"),
+        fillField("mac", "mac"),
+        fillField("serial", "serial"),
+        fillField("merk", "merk"),
+        fillField("model", "model"),
+        fillField("cpu", "cpu"),
+        fillField("cpu_cores", "cpu_cores"),
         fillField("cpu_threads", "cpu_threads"),
-        fillField("cpu_arch",    "cpu_arch"),
-        fillField("gpu",         "gpu"),
-        fillField("ram_size",    "ram_size"),
-        fillField("ram_type",    "ram_type"),
-        fillField("ram_speed",   "ram_speed"),
-        fillField("ram_usage",   "ram_usage"),
-        fillField("ssd",         "ssd"),
-        fillField("hdd",         "hdd"),
-        fillField("battery",     "battery"),
-        fillField("os",          "os"),
-        fillField("os_free",     "os_free"),
+        fillField("cpu_arch", "cpu_arch"),
+        fillField("gpu", "gpu"),
+        fillField("ram_size", "ram_size"),
+        fillField("ram_type", "ram_type"),
+        fillField("ram_speed", "ram_speed"),
+        fillField("ram_usage", "ram_usage"),
+        fillField("ssd", "ssd"),
+        fillField("hdd", "hdd"),
+        fillField("battery", "battery"),
+        fillField("os", "os"),
+        fillField("os_free", "os_free"),
       ];
 
       const anyFilled = autoResults.some(Boolean);
-      document.getElementById("auto-badge").style.display  = anyFilled ? "inline-flex" : "none";
-      document.getElementById("manual-badge").style.display = anyFilled ? "none" : "inline-flex";
+      document.getElementById("auto-badge").style.display = anyFilled
+        ? "inline-flex"
+        : "none";
+      document.getElementById("manual-badge").style.display = anyFilled
+        ? "none"
+        : "inline-flex";
 
       function toggleChargerType() {
         const checked = document.getElementById("k-charger").checked;
-        document.getElementById("charger-type-group").classList.toggle("hidden", !checked);
-        if (!checked) document.querySelectorAll("input[name=charger_type]").forEach(r => r.checked = false);
+        document
+          .getElementById("charger-type-group")
+          .classList.toggle("hidden", !checked);
+        if (!checked)
+          document
+            .querySelectorAll("input[name=charger_type]")
+            .forEach((r) => (r.checked = false));
       }
 
       function toggleTidakAda() {
         const tidakAda = document.getElementById("k-tidakada").checked;
         if (tidakAda) {
-          ["k-charger", "k-tas", "k-mouse", "k-docking"].forEach(id => {
+          ["k-charger", "k-tas", "k-mouse", "k-docking"].forEach((id) => {
             document.getElementById(id).checked = false;
           });
           document.getElementById("charger-type-group").classList.add("hidden");
-          document.querySelectorAll("input[name=charger_type]").forEach(r => r.checked = false);
+          document
+            .querySelectorAll("input[name=charger_type]")
+            .forEach((r) => (r.checked = false));
         }
       }
 
@@ -472,9 +856,10 @@
           const ct = document.querySelector("input[name=charger_type]:checked");
           items.push("Charger" + (ct ? " (" + ct.value + ")" : ""));
         }
-        if (document.getElementById("k-tas").checked)    items.push("Tas Laptop");
-        if (document.getElementById("k-mouse").checked)  items.push("Mouse");
-        if (document.getElementById("k-docking").checked) items.push("Docking/Hub");
+        if (document.getElementById("k-tas").checked) items.push("Tas Laptop");
+        if (document.getElementById("k-mouse").checked) items.push("Mouse");
+        if (document.getElementById("k-docking").checked)
+          items.push("Docking/Hub");
         return items.join(", ") || null;
       }
 
@@ -482,66 +867,100 @@
         "https://script.google.com/macros/s/AKfycbz52DDxaEfACkugm01-lzVI8UpAy0R1cijLjRGwftAbM2j8I2uZTokkYFF6IqAJtbAz/exec";
 
       async function submitForm() {
-        const nama       = document.getElementById("nama").value.trim();
-        const jabatan    = document.getElementById("jabatan").value.trim();
+        const nama = document.getElementById("nama").value.trim();
+        const jabatan = document.getElementById("jabatan").value.trim();
         const perusahaan = document.getElementById("perusahaan").value.trim();
         const penempatan = document.getElementById("penempatan").value.trim();
-        const status     = document.querySelector("input[name=status]:checked");
-        const merk       = document.getElementById("merk").value.trim();
-        const kondisi    = document.querySelector("input[name=kondisi]:checked");
+        const status = document.querySelector("input[name=status]:checked");
+        const merk = document.getElementById("merk").value.trim();
+        const kondisi = document.querySelector("input[name=kondisi]:checked");
         const kelengkapan = getKelengkapan();
 
-        if (!nama)        { showError("Nama lengkap wajib diisi.");              document.getElementById("nama").focus();        return; }
-        if (!jabatan)     { showError("Jabatan wajib diisi.");                   document.getElementById("jabatan").focus();     return; }
-        if (!perusahaan)  { showError("Perusahaan wajib diisi.");                document.getElementById("perusahaan").focus();  return; }
-        if (!penempatan)  { showError("Penempatan wajib diisi.");                document.getElementById("penempatan").focus();  return; }
-        if (!status)      { showError("Pilih status laptop (kantor/pribadi)."); return; }
-        if (!merk)        { showError("Merk laptop wajib diisi.");               document.getElementById("merk").focus();        return; }
-        if (!kondisi)     { showError("Pilih kondisi fisik laptop.");             return; }
-        if (!kelengkapan) { showError("Centang kelengkapan yang ada, atau pilih 'Tidak ada kelengkapan'."); return; }
+        if (!nama) {
+          showError("Nama lengkap wajib diisi.");
+          document.getElementById("nama").focus();
+          return;
+        }
+        if (!jabatan) {
+          showError("Jabatan wajib diisi.");
+          document.getElementById("jabatan").focus();
+          return;
+        }
+        if (!perusahaan) {
+          showError("Perusahaan wajib diisi.");
+          document.getElementById("perusahaan").focus();
+          return;
+        }
+        if (!penempatan) {
+          showError("Penempatan wajib diisi.");
+          document.getElementById("penempatan").focus();
+          return;
+        }
+        if (!status) {
+          showError("Pilih status laptop (kantor/pribadi).");
+          return;
+        }
+        if (!merk) {
+          showError("Merk laptop wajib diisi.");
+          document.getElementById("merk").focus();
+          return;
+        }
+        if (!kondisi) {
+          showError("Pilih kondisi fisik laptop.");
+          return;
+        }
+        if (!kelengkapan) {
+          showError(
+            "Centang kelengkapan yang ada, atau pilih 'Tidak ada kelengkapan'.",
+          );
+          return;
+        }
 
         const btn = document.getElementById("btn-submit");
         btn.disabled = true;
         btn.textContent = "Mengirim...";
 
         const payload = {
-          timestamp:     new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" }),
+          timestamp: new Date().toLocaleString("id-ID", {
+            timeZone: "Asia/Jakarta",
+          }),
           nama,
           jabatan,
           perusahaan,
           penempatan,
-          status:        status.value,
-          no_asset:      document.getElementById("no_asset").value.trim()     || "-",
-          hostname:      document.getElementById("hostname").value.trim()     || "-",
-          mac:           document.getElementById("mac").value.trim()          || "-",
-          serial:        document.getElementById("serial").value.trim()       || "-",
+          status: status.value,
+          no_asset: document.getElementById("no_asset").value.trim() || "-",
+          hostname: document.getElementById("hostname").value.trim() || "-",
+          mac: document.getElementById("mac").value.trim() || "-",
+          serial: document.getElementById("serial").value.trim() || "-",
           merk,
-          model:         document.getElementById("model").value.trim()        || "-",
-          cpu:           document.getElementById("cpu").value.trim()          || "-",
-          cpu_cores:     document.getElementById("cpu_cores").value.trim()    || "-",
-          cpu_threads:   document.getElementById("cpu_threads").value.trim()  || "-",
-          cpu_arch:      document.getElementById("cpu_arch").value.trim()     || "-",
-          gpu:           document.getElementById("gpu").value.trim()          || "-",
-          ram_size:      document.getElementById("ram_size").value.trim()     || "-",
-          ram_type:      document.getElementById("ram_type").value.trim()     || "-",
-          ram_speed:     document.getElementById("ram_speed").value.trim()    || "-",
-          ram_usage:     document.getElementById("ram_usage").value.trim()    || "-",
-          ssd:           document.getElementById("ssd").value.trim()          || "-",
-          hdd:           document.getElementById("hdd").value.trim()          || "-",
-          battery:       document.getElementById("battery").value.trim()      || "-",
-          os:            document.getElementById("os").value.trim()           || "-",
-          os_free:       document.getElementById("os_free").value.trim()      || "-",
+          model: document.getElementById("model").value.trim() || "-",
+          cpu: document.getElementById("cpu").value.trim() || "-",
+          cpu_cores: document.getElementById("cpu_cores").value.trim() || "-",
+          cpu_threads:
+            document.getElementById("cpu_threads").value.trim() || "-",
+          cpu_arch: document.getElementById("cpu_arch").value.trim() || "-",
+          gpu: document.getElementById("gpu").value.trim() || "-",
+          ram_size: document.getElementById("ram_size").value.trim() || "-",
+          ram_type: document.getElementById("ram_type").value.trim() || "-",
+          ram_speed: document.getElementById("ram_speed").value.trim() || "-",
+          ram_usage: document.getElementById("ram_usage").value.trim() || "-",
+          ssd: document.getElementById("ssd").value.trim() || "-",
+          hdd: document.getElementById("hdd").value.trim() || "-",
+          battery: document.getElementById("battery").value.trim() || "-",
+          os: document.getElementById("os").value.trim() || "-",
+          os_free: document.getElementById("os_free").value.trim() || "-",
           kondisi_fisik: kondisi.value,
           kelengkapan,
-          tahun_beli:    document.getElementById("tahun_beli").value.trim()   || "-",
-          kerusakan:     document.getElementById("kerusakan").value.trim()    || "-",
+          tahun_beli: document.getElementById("tahun_beli").value.trim() || "-",
+          kerusakan: document.getElementById("kerusakan").value.trim() || "-",
         };
 
         try {
           await fetch(APPS_SCRIPT_URL, {
             method: "POST",
             mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "text/plain" },
             body: JSON.stringify(payload),
           });
 
@@ -549,7 +968,9 @@
           document.getElementById("success-screen").classList.remove("hidden");
           document.getElementById("nama-confirm").textContent = nama;
         } catch (err) {
-          showError("Gagal mengirim. Pastikan internet terhubung, lalu coba lagi.");
+          showError(
+            "Gagal mengirim. Pastikan internet terhubung, lalu coba lagi.",
+          );
           btn.disabled = false;
           btn.textContent = "Kirim data →";
         }

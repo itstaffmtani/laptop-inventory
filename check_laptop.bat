@@ -44,7 +44,7 @@ $gpu_str = if ($gpu_obj) { $gpu_obj.Name.Trim() } else { "" }
 $ram_modules  = Get-WmiObject Win32_PhysicalMemory
 $ram_total_gb = [math]::Round(($ram_modules | Measure-Object -Property Capacity -Sum).Sum / 1GB)
 $first_mod    = $ram_modules | Select-Object -First 1
-$ddr_map      = @{ 20="DDR"; 21="DDR2"; 22="DDR2"; 24="DDR3"; 26="DDR4"; 34="DDR5" }
+$ddr_map      = @{ 20="DDR"; 21="DDR2"; 22="DDR2 FB-DIMM"; 24="DDR3"; 26="DDR4"; 29="LPDDR2"; 30="LPDDR3"; 31="LPDDR4"; 34="DDR5"; 35="LPDDR5" }
 $ddr_type     = $ddr_map[[int]$first_mod.SMBIOSMemoryType]
 if (-not $ddr_type) { $ddr_type = "" }
 $spd          = if ($first_mod.ConfiguredClockSpeed -gt 0) { $first_mod.ConfiguredClockSpeed } else { $first_mod.Speed }
