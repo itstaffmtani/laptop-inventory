@@ -692,6 +692,23 @@
                 >
                   <input
                     type="checkbox"
+                    id="k-keyboard"
+                    class="w-4 h-4 accent-sky-500 shrink-0"
+                  />
+                  <div class="flex items-center gap-2 text-sm text-stone-700">
+                    <i
+                      data-lucide="keyboard"
+                      class="w-4 h-4 text-stone-400 shrink-0"
+                    ></i>
+                    Keyboard Eksternal
+                  </div>
+                </label>
+
+                <label
+                  class="flex items-center gap-3 p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors has-[:checked]:border-sky-300 has-[:checked]:bg-sky-50"
+                >
+                  <input
+                    type="checkbox"
                     id="k-tidakada"
                     class="w-4 h-4 accent-sky-500 shrink-0"
                     onchange="toggleTidakAda()"
@@ -839,7 +856,7 @@
       function toggleTidakAda() {
         const tidakAda = document.getElementById("k-tidakada").checked;
         if (tidakAda) {
-          ["k-charger", "k-tas", "k-mouse", "k-docking"].forEach((id) => {
+          ["k-charger", "k-tas", "k-mouse", "k-docking", "k-keyboard"].forEach((id) => {
             document.getElementById(id).checked = false;
           });
           document.getElementById("charger-type-group").classList.add("hidden");
@@ -860,6 +877,8 @@
         if (document.getElementById("k-mouse").checked) items.push("Mouse");
         if (document.getElementById("k-docking").checked)
           items.push("Docking/Hub");
+        if (document.getElementById("k-keyboard").checked)
+          items.push("Keyboard Eksternal");
         return items.join(", ") || null;
       }
 
