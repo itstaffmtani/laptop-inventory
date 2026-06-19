@@ -3,24 +3,20 @@
 // Deploy sebagai Web App: Execute as Me · Anyone can access
 // ================================================================
 
-const SHEET_ID = "1t-0UZzBzEb_-Mf4dwVNEWHL2RI0YRQqZN-dyvOUNnQg"; // ambil dari URL sheets
+const SHEET_ID = "1t-0UZzBzEb_-Mf4dwVNEWHL2RI0YRQqZN-dyvOUNnQg";
 const SHEET_NAME = "Data Laptop";
 
 const HEADERS = [
-  "Timestamp",
-  "Nama",
-  "Jabatan",
-  "Perusahaan",
-  "Penempatan",
-  "Status Laptop",
-  "Merk",
-  "Model",
-  "CPU",
-  "RAM",
-  "Storage",
-  "Kerusakan",
-  "OS",
-  "Serial Number",
+  "Timestamp", "Nama", "Jabatan", "Perusahaan", "Penempatan", "Status Laptop",
+  "No. Asset", "Hostname", "MAC Address", "Serial Number",
+  "Merk", "Model",
+  "CPU", "Core Fisik", "Thread", "Arsitektur",
+  "GPU",
+  "RAM Kapasitas", "RAM Tipe", "RAM Speed", "RAM Usage",
+  "SSD", "HDD",
+  "Battery Health", "OS", "OS Free Space",
+  "Kondisi Fisik", "Kelengkapan", "Tahun Pembelian",
+  "Kerusakan / Keluhan",
 ];
 
 function doPost(e) {
@@ -28,7 +24,6 @@ function doPost(e) {
     const ss = SpreadsheetApp.openById(SHEET_ID);
     let sheet = ss.getSheetByName(SHEET_NAME);
 
-    // Buat sheet & header kalau belum ada
     if (!sheet) {
       sheet = ss.insertSheet(SHEET_NAME);
       sheet.appendRow(HEADERS);
@@ -43,23 +38,38 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
 
     sheet.appendRow([
-      data.timestamp || "",
-      data.nama || "",
-      data.jabatan || "",
-      data.perusahaan || "",
-      data.penempatan || "",
-      data.status || "",
-      data.merk || "",
-      data.model || "",
-      data.cpu || "",
-      data.ram || "",
-      data.storage || "",
-      data.kerusakan || "",
-      data.os || "",
-      data.serial || "",
+      data.timestamp     || "",
+      data.nama          || "",
+      data.jabatan       || "",
+      data.perusahaan    || "",
+      data.penempatan    || "",
+      data.status        || "",
+      data.no_asset      || "",
+      data.hostname      || "",
+      data.mac           || "",
+      data.serial        || "",
+      data.merk          || "",
+      data.model         || "",
+      data.cpu           || "",
+      data.cpu_cores     || "",
+      data.cpu_threads   || "",
+      data.cpu_arch      || "",
+      data.gpu           || "",
+      data.ram_size      || "",
+      data.ram_type      || "",
+      data.ram_speed     || "",
+      data.ram_usage     || "",
+      data.ssd           || "",
+      data.hdd           || "",
+      data.battery       || "",
+      data.os            || "",
+      data.os_free       || "",
+      data.kondisi_fisik || "",
+      data.kelengkapan   || "",
+      data.tahun_beli    || "",
+      data.kerusakan     || "",
     ]);
 
-    // Auto-resize kolom supaya rapi
     sheet.autoResizeColumns(1, HEADERS.length);
 
     return ContentService.createTextOutput(
@@ -72,7 +82,6 @@ function doPost(e) {
   }
 }
 
-// Test via GET (buka URL Apps Script di browser untuk cek apakah aktif)
 function doGet() {
   return ContentService.createTextOutput(
     "MTani Laptop Inventory — Apps Script aktif ✓",

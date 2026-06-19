@@ -129,6 +129,12 @@
         gap: 10px;
       }
 
+      .row-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+      }
+
       .radio-group {
         display: flex;
         gap: 8px;
@@ -268,7 +274,8 @@
       }
 
       @media (max-width: 400px) {
-        .row {
+        .row,
+        .row-3 {
           grid-template-columns: 1fr;
         }
       }
@@ -279,9 +286,7 @@
       <div class="header">
         <div class="logo">MTani · PT Semangat Bersama</div>
         <h1>Inventarisasi Laptop</h1>
-        <p>
-          Spesifikasi sudah terisi otomatis. Lengkapi data diri dan klik Kirim.
-        </p>
+        <p>Spesifikasi terisi otomatis. Lengkapi data diri dan klik Kirim.</p>
       </div>
 
       <div id="alert-success" class="alert alert-success">
@@ -292,9 +297,10 @@
       </div>
 
       <div id="form-area">
-        <!-- Data diri -->
+
+        <!-- ── 1. Data Diri ── -->
         <div class="card">
-          <div class="card-title">👤 Data diri</div>
+          <div class="card-title">👤 Data Diri</div>
 
           <div class="field">
             <label for="nama">Nama lengkap <span class="req">*</span></label>
@@ -330,30 +336,51 @@
             <label>Status laptop <span class="req">*</span></label>
             <div class="radio-group">
               <div class="radio-opt">
-                <input
-                  type="radio"
-                  name="status"
-                  id="s-kantor"
-                  value="Kantor"
-                />
+                <input type="radio" name="status" id="s-kantor" value="Kantor" />
                 <label for="s-kantor">🏢 Inventaris kantor</label>
               </div>
               <div class="radio-opt">
-                <input
-                  type="radio"
-                  name="status"
-                  id="s-pribadi"
-                  value="Pribadi"
-                />
+                <input type="radio" name="status" id="s-pribadi" value="Pribadi" />
                 <label for="s-pribadi">🏠 Milik pribadi</label>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Spesifikasi -->
+        <!-- ── 2. Identitas Aset ── -->
         <div class="card">
-          <div class="card-title">💻 Spesifikasi laptop</div>
+          <div class="card-title">🏷️ Identitas Aset</div>
+
+          <div class="field">
+            <label for="no_asset">No. Asset IT</label>
+            <input
+              type="text"
+              id="no_asset"
+              placeholder="Kode stiker inventaris (jika ada)"
+            />
+            <p class="note">Kosongkan jika belum ada kode asset.</p>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="hostname">Hostname</label>
+              <input type="text" id="hostname" placeholder="Nama komputer" />
+            </div>
+            <div class="field">
+              <label for="mac">MAC Address</label>
+              <input type="text" id="mac" placeholder="AA:BB:CC:DD:EE:FF" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="serial">Serial Number</label>
+            <input type="text" id="serial" placeholder="S/N dari BIOS" />
+          </div>
+        </div>
+
+        <!-- ── 3. Spesifikasi Hardware ── -->
+        <div class="card">
+          <div class="card-title">💻 Spesifikasi Hardware</div>
 
           <div id="auto-badge" class="spec-badge" style="display: none">
             ✓ Terdeteksi otomatis dari perangkat ini
@@ -365,45 +392,150 @@
           <div class="row">
             <div class="field">
               <label for="merk">Merk <span class="req">*</span></label>
-              <input
-                type="text"
-                id="merk"
-                placeholder="Lenovo, HP, ASUS, Apple..."
-              />
+              <input type="text" id="merk" placeholder="Lenovo, HP, ASUS, Apple..." />
             </div>
             <div class="field">
               <label for="model">Model</label>
-              <input type="text" id="model" placeholder="e.g. ThinkPad E14" />
+              <input type="text" id="model" placeholder="ThinkPad E14" />
             </div>
           </div>
 
           <div class="field">
             <label for="cpu">Processor (CPU)</label>
+            <input type="text" id="cpu" placeholder="Intel Core i7-12700H" />
+          </div>
+
+          <div class="row-3">
+            <div class="field">
+              <label for="cpu_cores">Core Fisik</label>
+              <input type="text" id="cpu_cores" placeholder="8" />
+            </div>
+            <div class="field">
+              <label for="cpu_threads">Thread</label>
+              <input type="text" id="cpu_threads" placeholder="16" />
+            </div>
+            <div class="field">
+              <label for="cpu_arch">Arsitektur</label>
+              <input type="text" id="cpu_arch" placeholder="x64" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="gpu">GPU / Graphics</label>
             <input
               type="text"
-              id="cpu"
-              placeholder="e.g. Intel Core i5-1135G7"
+              id="gpu"
+              placeholder="Intel Iris Xe / NVIDIA RTX 3050"
             />
+          </div>
+
+          <hr class="divider" />
+
+          <div class="row-3">
+            <div class="field">
+              <label for="ram_size">RAM</label>
+              <input type="text" id="ram_size" placeholder="16 GB" />
+            </div>
+            <div class="field">
+              <label for="ram_type">Tipe</label>
+              <input type="text" id="ram_type" placeholder="DDR4" />
+            </div>
+            <div class="field">
+              <label for="ram_speed">Speed</label>
+              <input type="text" id="ram_speed" placeholder="3200 MHz" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="ram_usage">Penggunaan RAM Saat Ini</label>
+            <input
+              type="text"
+              id="ram_usage"
+              placeholder="45% (7.2 GB digunakan)"
+            />
+            <p class="note">Snapshot saat script dijalankan.</p>
           </div>
 
           <div class="row">
             <div class="field">
-              <label for="ram">RAM</label>
-              <input type="text" id="ram" placeholder="e.g. 8 GB" />
+              <label for="ssd">SSD</label>
+              <input type="text" id="ssd" placeholder="512 GB NVMe" />
             </div>
             <div class="field">
-              <label for="storage">Storage</label>
-              <input type="text" id="storage" placeholder="e.g. 256 GB SSD" />
+              <label for="hdd">HDD</label>
+              <input
+                type="text"
+                id="hdd"
+                placeholder="1 TB (kosong jika tidak ada)"
+              />
             </div>
           </div>
 
           <hr class="divider" />
 
+          <div class="row">
+            <div class="field">
+              <label for="battery">Battery Health</label>
+              <input type="text" id="battery" placeholder="78% (44 Wh / 57 Wh)" />
+            </div>
+            <div class="field">
+              <label for="os">Sistem Operasi</label>
+              <input type="text" id="os" placeholder="Windows 11 Pro 64-bit" />
+            </div>
+          </div>
+
           <div class="field">
-            <label for="kerusakan">Kerusakan / keluhan</label>
+            <label for="os_free">Ruang Bebas Partisi OS</label>
+            <input
+              type="text"
+              id="os_free"
+              placeholder="C: 120 GB free / 256 GB"
+            />
+          </div>
+        </div>
+
+        <!-- ── 4. Kondisi & Kelengkapan ── -->
+        <div class="card">
+          <div class="card-title">🔍 Kondisi & Kelengkapan</div>
+
+          <div class="field">
+            <label>Kondisi fisik <span class="req">*</span></label>
+            <div class="radio-group">
+              <div class="radio-opt">
+                <input type="radio" name="kondisi" id="k-baik" value="Baik" />
+                <label for="k-baik">✅ Baik</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" name="kondisi" id="k-cukup" value="Cukup" />
+                <label for="k-cukup">⚠️ Cukup</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" name="kondisi" id="k-kurang" value="Kurang" />
+                <label for="k-kurang">❌ Kurang</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="kelengkapan">Kelengkapan</label>
+              <input
+                type="text"
+                id="kelengkapan"
+                placeholder="Charger, Tas, Mouse..."
+              />
+            </div>
+            <div class="field">
+              <label for="tahun_beli">Tahun Pembelian</label>
+              <input type="text" id="tahun_beli" placeholder="2022" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="kerusakan">Kerusakan / Keluhan</label>
             <textarea
               id="kerusakan"
-              placeholder="Kosongkan jika laptop normal. Contoh: baterai bocor, layar retak, keyboard macet..."
+              placeholder="Kosongkan jika normal. Contoh: baterai bocor, layar retak, keyboard macet..."
             ></textarea>
             <p class="note">Tulis "Tidak ada" jika kondisi baik.</p>
           </div>
@@ -430,93 +562,94 @@
     </div>
 
     <script>
-      // ── Baca query params dari PowerShell ──────────────────────
       const params = new URLSearchParams(window.location.search);
 
-      function fillField(id, key, fallback) {
+      function fillField(id, key) {
         const val = params.get(key);
         const el = document.getElementById(id);
-        if (
-          val &&
-          val.trim() &&
-          !val.toLowerCase().includes("tidak diketahui")
-        ) {
-          el.value = val.trim();
-          el.classList.add("auto-filled");
-          return true;
-        } else if (fallback) {
-          el.placeholder = fallback;
-        }
-        return false;
+        if (!el || !val || !val.trim() || val.toLowerCase().includes("tidak diketahui")) return false;
+        el.value = val.trim();
+        el.classList.add("auto-filled");
+        return true;
       }
 
-      const filled = [
-        fillField("merk", "merk", "Isi manual"),
-        fillField("model", "model", "Isi manual"),
-        fillField("cpu", "cpu", "e.g. Intel Core i5"),
-        fillField("ram", "ram", "e.g. 8 GB"),
-        fillField("storage", "storage", "e.g. 256 GB SSD"),
+      const autoResults = [
+        fillField("hostname",    "hostname"),
+        fillField("mac",         "mac"),
+        fillField("serial",      "serial"),
+        fillField("merk",        "merk"),
+        fillField("model",       "model"),
+        fillField("cpu",         "cpu"),
+        fillField("cpu_cores",   "cpu_cores"),
+        fillField("cpu_threads", "cpu_threads"),
+        fillField("cpu_arch",    "cpu_arch"),
+        fillField("gpu",         "gpu"),
+        fillField("ram_size",    "ram_size"),
+        fillField("ram_type",    "ram_type"),
+        fillField("ram_speed",   "ram_speed"),
+        fillField("ram_usage",   "ram_usage"),
+        fillField("ssd",         "ssd"),
+        fillField("hdd",         "hdd"),
+        fillField("battery",     "battery"),
+        fillField("os",          "os"),
+        fillField("os_free",     "os_free"),
       ];
 
-      const anyFilled = filled.some(Boolean);
-      document.getElementById("auto-badge").style.display = anyFilled
-        ? "inline-flex"
-        : "none";
-      document.getElementById("manual-badge").style.display = anyFilled
-        ? "none"
-        : "inline-flex";
+      const anyFilled = autoResults.some(Boolean);
+      document.getElementById("auto-badge").style.display  = anyFilled ? "inline-flex" : "none";
+      document.getElementById("manual-badge").style.display = anyFilled ? "none" : "inline-flex";
 
-      // ── Submit ke Google Sheets ─────────────────────────────────
       const APPS_SCRIPT_URL =
         "https://script.google.com/macros/s/AKfycbz52DDxaEfACkugm01-lzVI8UpAy0R1cijLjRGwftAbM2j8I2uZTokkYFF6IqAJtbAz/exec";
 
       async function submitForm() {
-        const nama = document.getElementById("nama").value.trim();
+        const nama    = document.getElementById("nama").value.trim();
         const jabatan = document.getElementById("jabatan").value.trim();
-        const status = document.querySelector("input[name=status]:checked");
-        const merk = document.getElementById("merk").value.trim();
+        const status  = document.querySelector("input[name=status]:checked");
+        const merk    = document.getElementById("merk").value.trim();
+        const kondisi = document.querySelector("input[name=kondisi]:checked");
 
-        if (!nama) {
-          showError("Nama lengkap wajib diisi.");
-          document.getElementById("nama").focus();
-          return;
-        }
-        if (!jabatan) {
-          showError("Jabatan wajib diisi.");
-          document.getElementById("jabatan").focus();
-          return;
-        }
-        if (!status) {
-          showError("Pilih status laptop (kantor atau pribadi).");
-          return;
-        }
-        if (!merk) {
-          showError("Merk laptop wajib diisi.");
-          document.getElementById("merk").focus();
-          return;
-        }
+        if (!nama)    { showError("Nama lengkap wajib diisi.");             document.getElementById("nama").focus();    return; }
+        if (!jabatan) { showError("Jabatan wajib diisi.");                  document.getElementById("jabatan").focus(); return; }
+        if (!status)  { showError("Pilih status laptop (kantor/pribadi)."); return; }
+        if (!merk)    { showError("Merk laptop wajib diisi.");              document.getElementById("merk").focus();   return; }
+        if (!kondisi) { showError("Pilih kondisi fisik laptop.");            return; }
 
         const btn = document.getElementById("btn-submit");
         btn.disabled = true;
         btn.textContent = "Mengirim...";
 
         const payload = {
-          timestamp: new Date().toLocaleString("id-ID", {
-            timeZone: "Asia/Jakarta",
-          }),
+          timestamp:    new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" }),
           nama,
           jabatan,
-          perusahaan: document.getElementById("perusahaan").value.trim() || "-",
-          penempatan: document.getElementById("penempatan").value.trim() || "-",
-          status: status.value,
+          perusahaan:   document.getElementById("perusahaan").value.trim()  || "-",
+          penempatan:   document.getElementById("penempatan").value.trim()  || "-",
+          status:       status.value,
+          no_asset:     document.getElementById("no_asset").value.trim()    || "-",
+          hostname:     document.getElementById("hostname").value.trim()    || "-",
+          mac:          document.getElementById("mac").value.trim()         || "-",
+          serial:       document.getElementById("serial").value.trim()      || "-",
           merk,
-          model: document.getElementById("model").value.trim() || "-",
-          cpu: document.getElementById("cpu").value.trim() || "-",
-          ram: document.getElementById("ram").value.trim() || "-",
-          storage: document.getElementById("storage").value.trim() || "-",
-          kerusakan: document.getElementById("kerusakan").value.trim() || "-",
-          os: params.get("os") || "-",
-          serial: params.get("serial") || "-",
+          model:        document.getElementById("model").value.trim()       || "-",
+          cpu:          document.getElementById("cpu").value.trim()         || "-",
+          cpu_cores:    document.getElementById("cpu_cores").value.trim()   || "-",
+          cpu_threads:  document.getElementById("cpu_threads").value.trim() || "-",
+          cpu_arch:     document.getElementById("cpu_arch").value.trim()    || "-",
+          gpu:          document.getElementById("gpu").value.trim()         || "-",
+          ram_size:     document.getElementById("ram_size").value.trim()    || "-",
+          ram_type:     document.getElementById("ram_type").value.trim()    || "-",
+          ram_speed:    document.getElementById("ram_speed").value.trim()   || "-",
+          ram_usage:    document.getElementById("ram_usage").value.trim()   || "-",
+          ssd:          document.getElementById("ssd").value.trim()         || "-",
+          hdd:          document.getElementById("hdd").value.trim()         || "-",
+          battery:      document.getElementById("battery").value.trim()     || "-",
+          os:           document.getElementById("os").value.trim()          || "-",
+          os_free:      document.getElementById("os_free").value.trim()     || "-",
+          kondisi_fisik: kondisi.value,
+          kelengkapan:  document.getElementById("kelengkapan").value.trim() || "-",
+          tahun_beli:   document.getElementById("tahun_beli").value.trim()  || "-",
+          kerusakan:    document.getElementById("kerusakan").value.trim()   || "-",
         };
 
         try {
@@ -527,15 +660,12 @@
             body: JSON.stringify(payload),
           });
 
-          // Tampilkan success screen
           document.getElementById("form-area").style.display = "none";
           const sc = document.getElementById("success-screen");
           sc.style.display = "block";
           document.getElementById("nama-confirm").textContent = nama;
         } catch (err) {
-          showError(
-            "Gagal mengirim. Pastikan internet terhubung, lalu coba lagi.",
-          );
+          showError("Gagal mengirim. Pastikan internet terhubung, lalu coba lagi.");
           btn.disabled = false;
           btn.textContent = "Kirim data →";
         }
